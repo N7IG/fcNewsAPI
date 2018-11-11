@@ -165,11 +165,3 @@ const newsapi = new NewsApi(API_KEY);
 
 newsapi.topHeadlines().then(response => insertArticles(response));
 newsapi.sources().then(response => displaySources(response));
-
-// debuggerd
-// debugger
-// debuggerdd
-// РАЗОБРАТЬСЯ СО СТРАНИЦАМИ
-// debuggerdd
-// debugger
-// debuggerd
