@@ -1,0 +1,40 @@
+body,
+html {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    background: #f4f4f4;
+}
+
+a {
+    text-decoration: none;
+}
+
+.page-width {
+    max-width: 1000px;
+    margin: auto;
+    padding: 0 13px;
+}
+
+.default-button {
+    padding: 10px 10px;
+    background: rgb(44, 44, 44);
+    color: white;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: all 0.4s;
+    outline: none;
+}
+
+.default-button:hover {
+    color: #f7df1e;
+    border: 2px solid #f7df1e;
+    background-color: #1d1d1d;
+}
+
+@media (max-width: 900px) {
+    .default-button:hover {
+        color: white;
+        border: 2px solid white;
+        background-color: #1d1d1d;
+    }
+}

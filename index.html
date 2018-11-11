@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <title>ES6 newsAPI</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-</head>
-<body>
-    <h1>NEWS API</h1>
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <title>ES6 newsAPI</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="styles/general.css" />
+        <link rel="stylesheet" href="styles/header.css" />
+        <link rel="stylesheet" href="styles/article.css" />
+        <link
+            rel="shortcut icon"
+            href="images/favicon_js.ico"
+            type="image/x-icon"
+        />
+        <link
+            href="https://fonts.googleapis.com/css?family=Montserrat"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        />
+    </head>
+    <body>
+        <header>
+            <div class="page-width">
+                <div class="title-block">
+                    <img
+                        src="images/js_logo.png"
+                        alt="JS Logo"
+                        class="header-logo"
+                    />
+                    <h1>NEWS API</h1>
+                </div>
+                <div class="channel-bar">
+                    <h2 class="current-channel">
+                        No channel selected. Hot news from US are displayed
+                    </h2>
+                    <div class="select-channel">
+                        Select channel
+                        <i class="fas fa-chevron-circle-down"></i>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div class="channels"><div class="channels-list"></div></div>
+        <main class="page-width"></main>
+    </body>
+    <script src="scripts/script.js"></script>
 </html>

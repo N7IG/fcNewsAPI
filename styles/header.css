@@ -1,0 +1,109 @@
+header {
+    background: rgb(44, 44, 44);
+    color: #cccccc;
+}
+
+.title-block {
+    align-items: flex-end;
+    display: flex;
+}
+
+.header-logo {
+    display: block;
+    align-self: center;
+}
+
+h1 {
+    margin: 0px;
+    margin-left: 6px;
+    font-size: 36px;
+    color: #f7df1e;
+}
+
+.channel-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.select-channel:hover {
+    cursor: pointer;
+    color: #fff5a3;
+}
+
+.select-channel {
+    color: #f7df1e;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.channel {
+    color: #f7df1e;
+    white-space: nowrap;
+}
+
+.channels {
+    width: 100%;
+    height: 0;
+    position: absolute;
+    background: rgb(44, 44, 44);
+    transition: all 0.4s;
+    overflow: auto;
+}
+
+.channel-column {
+    color: white;
+    flex-shrink: 0;
+}
+
+.channel-column li:hover {
+    cursor: pointer;
+    color: #f7df1e;
+}
+
+.channels-list {
+    display: flex;
+}
+
+.channels::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+.channels::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 5px;
+}
+
+.channels::-webkit-scrollbar-thumb {
+    background: #f7df1e;
+    border-radius: 5px;
+}
+
+.channels::-webkit-scrollbar-thumb:hover {
+    background: #fff5a3;
+}
+
+@media (max-width: 900px) {
+    .channel-bar {
+        display: block;
+    }
+
+    header {
+        padding-bottom: 20px;
+    }
+
+    .channels::-webkit-scrollbar-thumb:hover {
+        background: inherit;
+    }
+
+    .channel-column li:hover {
+        cursor: pointer;
+        color: #f7df1e;
+    }
+
+    .select-channel:hover {
+        cursor: pointer;
+        color: #f7df1e;
+    }
+}
