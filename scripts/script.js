@@ -20,7 +20,7 @@ class NewsApi {
      * country, category, sources, q, pageSize, page
      */
     topHeadlines(requestParams = { country: "us", pageSize: 10 }) {
-        let requestBase = `${this.baseUrl}top-headlines?`;
+        let requestBase = `${this.baseUrl}top-headlines`;
 
         return this.makeRequest(requestBase, requestParams);
     }
@@ -31,19 +31,21 @@ class NewsApi {
      * category, language, country
      */
     sources(requestParams) {
-        let requestBase = `${this.baseUrl}sources?`;
+        let requestBase = `${this.baseUrl}sources`;
 
         return this.makeRequest(requestBase, requestParams);
     }
 
-    makeRequest(base, requestParams) {
-        if (requestParams) {
-            for (var param in requestParams) {
-                base += `${param}=${requestParams[param]}&`;
+    makeRequest(url, queryParams) {
+        let queryString = "";
+        if (queryParams) {
+            for (var param in queryParams) {
+                queryString += `${param}=${queryParams[param]}&`;
             }
         }
+        queryString += `apiKey=${this.API_KEY}`;
 
-        return fetch(`${base}apiKey=${this.API_KEY}`).then(response =>
+        return fetch(`${url}?${queryString}`).then(response =>
             response.json()
         );
     }
