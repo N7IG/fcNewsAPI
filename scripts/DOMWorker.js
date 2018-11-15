@@ -10,8 +10,12 @@ class DOMWorker {
     }
 
     init() {
-        this.domChannelSelect.addEventListener("click", event => this.toggleSourceBar(event));
-        this.domChannelsList.addEventListener("click", event => this.onChannelsClick(event));
+        this.domChannelSelect.addEventListener("click", event =>
+            this.toggleSourceBar(event)
+        );
+        this.domChannelsList.addEventListener("click", event =>
+            this.onChannelsClick(event)
+        );
     }
 
     onChannelsClick(event) {
@@ -19,32 +23,44 @@ class DOMWorker {
             const sources = event.target.getAttribute("data-id");
             newsapi
                 .topHeadlines({ sources })
-                .then(response => domWorker.insertArticles(response));
+                .then(response => domWorker.insertArticles(response.articles));
             this.toggleSourceBar();
             this.channelStatus(sources);
         }
     }
 
     insertArticle(article) {
-        this.domMain.innerHTML += this.templateMaker.getArticleTemplate(article);
+        this.domMain.innerHTML += this.templateMaker.getArticleTemplate(
+            article
+        );
     }
-    
-    insertArticles(response) {
+
+    insertArticles(articles) {
         this.domMain.innerHTML = "";
-        const articles = response.articles;
         articles.forEach(article => this.insertArticle(article));
     }
-    
+
+    showArticesError(errorMessage) {
+        this.domMain.innerHTML = errorMessage;
+    }
+
     displaySources(response) {
         const sources = response.sources;
-        splitUp(sources, 20).forEach(sources => this.insertSourcesColumn(sources));
+        this.domChannelsList.innerHTML = "";
+        splitUp(sources, 20).forEach(sources =>
+            this.insertSourcesColumn(sources)
+        );
     }
-    
+
+    showSourcesError(errorMessage) {
+        this.domChannelsList.innerHTML = `<div class='channel-column'>${errorMessage}</div>`;
+    }
+
     channelStatus(currentChannel) {
         this.domCurrentChannel.innerHTML = `Current channel: 
             <span class="channel">${currentChannel}</span>`;
     }
-    
+
     insertSourcesColumn(sources) {
         let column = "<ul class='channel-column'>";
         sources.forEach(source => {
@@ -53,7 +69,7 @@ class DOMWorker {
         column += "</ul>";
         this.domChannelsList.innerHTML += column;
     }
-    
+
     toggleSourceBar() {
         if (this.domChannels.style.height === "initial") {
             this.domChannels.style.height = 0;
