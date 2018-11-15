@@ -23,7 +23,12 @@ class DOMWorker {
             const sources = event.target.getAttribute("data-id");
             newsapi
                 .topHeadlines({ sources })
-                .then(response => domWorker.insertArticles(response.articles));
+                .then(response => domWorker.insertArticles(response.articles))
+                .catch(
+                    domWorker.showArticesError(
+                        "Looks like you have problems with your internet connection. No news right now :("
+                    )
+                );
             this.toggleSourceBar();
             this.channelStatus(sources);
         }
