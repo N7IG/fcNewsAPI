@@ -10,8 +10,8 @@ class NewsApi {
      * Accepts object with the following request parameters:
      * country, category, sources, q, pageSize, page
      */
-    topHeadlines(requestParams = { country: "us", pageSize: 10 }) {
-        return this.makeRequest("top-headlines", requestParams);
+    topHeadlines(queryParams = { country: "us", pageSize: 10 }) {
+        return this.makeRequest("top-headlines", queryParams);
     }
 
     /*
@@ -19,21 +19,24 @@ class NewsApi {
      * Accepts object with the following request parameters:
      * category, language, country
      */
-    sources(requestParams) {
-        return this.makeRequest("sources", requestParams);
+    sources(queryParams) {
+        const response = this.makeRequest("sources", queryParams);
+        return response;
     }
 
-    makeRequest(endpoint, queryParams) {
-        let queryString = "?";
+    async makeRequest(endpoint, queryParams) {
+        let queryString = "";
         if (queryParams) {
-            for (var param in queryParams) {
-                queryString += `${param}=${queryParams[param]}&`;
-            }
+            queryString = Object.entries(queryParams)
+                .map(pair => pair.join("="))
+                .join("&");
         }
-        queryString += `apiKey=${this.API_KEY}`;
 
-        return fetch(this.baseUrl + endpoint + queryString).then(response =>
-            response.json()
+        const response = await fetch(
+            `${this.baseUrl + endpoint}?${queryString}&apiKey=${this.API_KEY}`
         );
+        const json = await response.json();
+
+        return json;
     }
 }

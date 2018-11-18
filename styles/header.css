@@ -1,6 +1,7 @@
 header {
     background: rgb(44, 44, 44);
     color: #cccccc;
+    filter: hue-rotate(20deg);
 }
 
 .title-block {

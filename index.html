@@ -46,8 +46,18 @@
         <div class="channels"><div class="channels-list"></div></div>
         <main class="page-width"></main>
     </body>
-    <script src="scripts/NewsApi.js"></script>
-    <script src="scripts/TemplateMaker.js"></script>
-    <script src="scripts/DOMWorker.js"></script>
-    <script src="scripts/main.js"></script>
+
+    <!--
+        <script src="scripts/config.js"></script>
+        <script src="scripts/news-api.js"></script>
+        <script src="scripts/template-maker.js"></script>
+        <script src="scripts/dom-worker.js"></script>
+        <script src="scripts/main.js"></script>
+    -->
+
+    <script src="./node_modules/@babel/polyfill/dist/polyfill.min.js"></script>
+    <script src="./node_modules/whatwg-fetch/dist/fetch.umd.js"></script>
+    <script src="./node_modules/promise-polyfill/dist/polyfill.min.js"></script>
+
+    <script src="./transpiled.js"></script>
 </html>

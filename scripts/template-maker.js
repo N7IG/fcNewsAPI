@@ -1,7 +1,7 @@
 class TemplateMaker {
     getArticleTemplate(article) {
-        const charsLeftExp = /\[\+[0-9]+ chars\]/;
-    
+        const charsLeftExp = /\[\+[0-9]+ chars\]/s;
+
         return `<article>
                     <div class="article-title">
                         <h2>${article.title}</h2>

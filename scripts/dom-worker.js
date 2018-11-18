@@ -1,3 +1,5 @@
+// import { TemplateMaker } from "./template-maker";
+
 class DOMWorker {
     constructor() {
         this.domMain = document.querySelector("main");
@@ -6,32 +8,6 @@ class DOMWorker {
         this.domChannelSelect = document.querySelector(".select-channel");
         this.domCurrentChannel = document.querySelector(".current-channel");
         this.templateMaker = new TemplateMaker();
-        this.init();
-    }
-
-    init() {
-        this.domChannelSelect.addEventListener("click", event =>
-            this.toggleSourceBar(event)
-        );
-        this.domChannelsList.addEventListener("click", event =>
-            this.onChannelsClick(event)
-        );
-    }
-
-    onChannelsClick(event) {
-        if (event.target.tagName === "LI") {
-            const sources = event.target.getAttribute("data-id");
-            newsapi
-                .topHeadlines({ sources })
-                .then(response => domWorker.insertArticles(response.articles))
-                .catch(
-                    domWorker.showArticesError(
-                        "Looks like you have problems with your internet connection. No news right now :("
-                    )
-                );
-            this.toggleSourceBar();
-            this.channelStatus(sources);
-        }
     }
 
     insertArticle(article) {
@@ -42,6 +18,7 @@ class DOMWorker {
 
     insertArticles(articles) {
         this.domMain.innerHTML = "";
+
         articles.forEach(article => this.insertArticle(article));
     }
 
@@ -69,7 +46,10 @@ class DOMWorker {
     insertSourcesColumn(sources) {
         let column = "<ul class='channel-column'>";
         sources.forEach(source => {
-            column += `<li data-id="${source.id}">${source.name}</li>`;
+            column += `<li data-id="${source.id}" 
+                           data-name="${source.name}">
+                               ${source.name}
+                        </li>`;
         });
         column += "</ul>";
         this.domChannelsList.innerHTML += column;

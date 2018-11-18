@@ -1,21 +1,50 @@
-const API_KEY = "37bf6eba9005457ca4209b9169ea3828";
-const newsapi = new NewsApi(API_KEY);
+// import { NewsApi } from "./news-api";
+// import { DOMWorker } from "./dom-worker";
+// import { appConfig } from "./config";
+
+const apiKey = appConfig.youtubeApiKey;
+const newsapi = new NewsApi(apiKey);
 const domWorker = new DOMWorker();
 
-newsapi
-    .topHeadlines()
-    .then(response => domWorker.insertArticles(response.articles))
-    .catch(
+const domChannelSelect = document.querySelector(".select-channel");
+const domChannelsList = document.querySelector(".channels-list");
+
+function onChannelsClick(event) {
+    if (event.target.tagName === "LI") {
+        const sourceName = event.target.getAttribute("data-name");
+        const sourceId = event.target.getAttribute("data-id");
+        insertTopHeadlines({ sources: sourceId });
+        domWorker.toggleSourceBar();
+        domWorker.channelStatus(sourceName);
+    }
+}
+
+async function insertTopHeadlines(params) {
+    try {
+        const response = await newsapi.topHeadlines(params);
+        domWorker.insertArticles(response.articles);
+    } catch {
         domWorker.showArticesError(
             "Looks like you have problems with your internet connection. No news right now :("
-        )
-    );
+        );
+    }
+}
 
-newsapi
-    .sources()
-    .then(response => domWorker.displaySources(response))
-    .catch(
+async function insertSources() {
+    try {
+        const response = await newsapi.sources();
+        domWorker.displaySources(response);
+    } catch {
         domWorker.showSourcesError(
             "Looks like you have problems with your internet connection. No channels to choose from :("
-        )
-    );
+        );
+    }
+}
+
+domChannelSelect.addEventListener("click", event =>
+    domWorker.toggleSourceBar(event)
+);
+domChannelsList.addEventListener("click", event => onChannelsClick(event));
+
+insertTopHeadlines();
+insertSources();

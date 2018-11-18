@@ -1,0 +1,30 @@
+{
+    "name": "fcnewsapi",
+    "version": "1.0.0",
+    "description": "Front camp task. JavaScript core",
+    "main": "index.js",
+    "scripts": {
+        "build": "babel babel-script --out-file ./transpiled.js",
+        "watch": "babel babel-script --watch --out-file ./transpiled.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/N7IG/fcNewsAPI.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/N7IG/fcNewsAPI/issues"
+    },
+    "homepage": "https://github.com/N7IG/fcNewsAPI#readme",
+    "devDependencies": {
+        "@babel/cli": "^7.1.5",
+        "@babel/core": "^7.1.6",
+        "@babel/preset-env": "^7.1.6"
+    },
+    "dependencies": {
+        "@babel/polyfill": "^7.0.0",
+        "promise-polyfill": "^8.1.0",
+        "whatwg-fetch": "^3.0.0"
+    }
+}
