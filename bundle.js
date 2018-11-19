@@ -7599,7 +7599,20 @@ function () {
     key: "getArticleTemplate",
     value: function getArticleTemplate(article) {
       var charsLeftExp = /\[\+[0-9]+ chars\]/;
-      return "<article>\n                    <div class=\"article-title\">\n                        <h2>".concat(article.title, "</h2>\n                        <div class=\"source-name\">").concat(article.source.name, "</div>\n                    </div>\n                    ").concat(article.description ? "<img\n                                src=\"".concat(article.urlToImage, "\"\n                                alt=\"article image\"\n                                class=\"article-image\"\n                            />") : "", "\n                    <p class=\"article-description\">\n                        ").concat(article.description || "", "\n                    </p>\n                    <p class=\"article-content\">\n                        ").concat(article.content ? article.content.replace(charsLeftExp, "") : "", "\n                    </p>\n                    <div class=\"article-footer\">\n                        <div class=\"article-date\">\n                            ").concat(new Date(article.publishedAt).toLocaleString(), "\n                        </div>\n                        <a href=\"").concat(article.url, "\" target=\"_blank\">\n                            <div class=\"default-button\">Go to full article</div>\n                        </a>\n                    </div>\n                </article>");
+      var title = article.title || "";
+      var sourceName = article.source.name || "";
+      var description = article.description || "";
+      var urlToImage = article.urlToImage;
+      var content = article.content ? article.content.replace(charsLeftExp, "") : "";
+      var date = new Date(article.publishedAt).toLocaleString();
+      var url = article.url;
+      var imageTemplate = "";
+
+      if (article.description) {
+        imageTemplate = "<img\n                                src=\"".concat(urlToImage, "\"\n                                alt=\"article image\"\n                                class=\"article-image\"\n                            />");
+      }
+
+      return "<article>\n                    <div class=\"article-title\">\n                        <h2>".concat(title, "</h2>\n                        <div class=\"source-name\">").concat(sourceName, "</div>\n                    </div>\n                    ").concat(imageTemplate, "\n                    <p class=\"article-description\">").concat(description, "</p>\n                    <p class=\"article-content\">").concat(content, "</p>\n                    <div class=\"article-footer\">\n                        <div class=\"article-date\">").concat(date, "</div>\n                        <a href=\"").concat(url, "\" target=\"_blank\">\n                            <div class=\"default-button\">Go to full article</div>\n                        </a>\n                    </div>\n                </article>");
     }
   }]);
 
