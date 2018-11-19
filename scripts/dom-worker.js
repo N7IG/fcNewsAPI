@@ -1,6 +1,5 @@
-// import { TemplateMaker } from "./template-maker";
-
-class DOMWorker {
+import { TemplateMaker } from "./template-maker";
+export class DOMWorker {
     constructor() {
         this.domMain = document.querySelector("main");
         this.domChannels = document.querySelector(".channels");
@@ -56,12 +55,12 @@ class DOMWorker {
     }
 
     toggleSourceBar() {
-        if (this.domChannels.style.height === "initial") {
+        if (this.domChannels.style.height === "auto") {
             this.domChannels.style.height = 0;
             this.domChannelSelect.innerHTML = `Select channel
                 <i class="fas fa-chevron-circle-down"></i>`;
         } else {
-            this.domChannels.style.height = "initial";
+            this.domChannels.style.height = "auto";
             this.domChannelSelect.innerHTML = `Cancel
                 <i class="fas fa-chevron-circle-up"></i>`;
         }

@@ -1,4 +1,4 @@
-class TemplateMaker {
+export class TemplateMaker {
     getArticleTemplate(article) {
         const charsLeftExp = /\[\+[0-9]+ chars\]/s;
 

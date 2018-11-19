@@ -4,7 +4,8 @@
     "description": "Front camp task. JavaScript core",
     "main": "index.js",
     "scripts": {
-        "build": "babel babel-script --out-file ./transpiled.js",
+        "browserify": "browserify ./scripts/main.js -o bundle.js -t [ babelify ]",
+        "build": "babel scripts --out-file ./transpiled.js",
         "watch": "babel babel-script --watch --out-file ./transpiled.js"
     },
     "repository": {
@@ -20,7 +21,9 @@
     "devDependencies": {
         "@babel/cli": "^7.1.5",
         "@babel/core": "^7.1.6",
-        "@babel/preset-env": "^7.1.6"
+        "@babel/preset-env": "^7.1.6",
+        "babelify": "^10.0.0",
+        "browserify": "^16.2.3"
     },
     "dependencies": {
         "@babel/polyfill": "^7.0.0",

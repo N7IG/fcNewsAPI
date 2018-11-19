@@ -1,7 +1,8 @@
-class NewsApi {
-    constructor(api_key) {
-        this.API_KEY = api_key;
-        this.baseUrl = "https://newsapi.org/v2/";
+import { appConfig } from "./config";
+export class NewsApi {
+    constructor() {
+        this.API_KEY = appConfig.youtubeApiKey;
+        this.baseUrl = appConfig.baseUrl;
     }
 
     /*
@@ -20,8 +21,7 @@ class NewsApi {
      * category, language, country
      */
     sources(queryParams) {
-        const response = this.makeRequest("sources", queryParams);
-        return response;
+        return this.makeRequest("sources", queryParams);
     }
 
     async makeRequest(endpoint, queryParams) {

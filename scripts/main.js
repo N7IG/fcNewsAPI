@@ -1,9 +1,11 @@
-// import { NewsApi } from "./news-api";
-// import { DOMWorker } from "./dom-worker";
-// import { appConfig } from "./config";
+import "@babel/polyfill";
+import "whatwg-fetch";
+import "promise-polyfill";
 
-const apiKey = appConfig.youtubeApiKey;
-const newsapi = new NewsApi(apiKey);
+import { NewsApi } from "./news-api";
+import { DOMWorker } from "./dom-worker";
+
+const newsapi = new NewsApi();
 const domWorker = new DOMWorker();
 
 const domChannelSelect = document.querySelector(".select-channel");
