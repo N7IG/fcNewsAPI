@@ -1,6 +1,11 @@
-export class TemplateMaker {
+import "../styles/article.css";
+
+console.log("Artice loaded");
+
+export class Article {
     getArticleTemplate(article) {
-        const charsLeftExp = /\[\+[0-9]+ chars\]/s;
+        // TODO: try to use \s again
+        const charsLeftExp = /\[\+[0-9]+ chars\]/;
 
         const title = article.title || "";
         const sourceName = article.source.name || "";

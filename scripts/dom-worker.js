@@ -1,4 +1,7 @@
-import { TemplateMaker } from "./template-maker";
+import { Article } from "./article";
+
+console.log("dom-worker loaded");
+
 export class DOMWorker {
     constructor() {
         this.domMain = document.querySelector("main");
@@ -6,13 +9,11 @@ export class DOMWorker {
         this.domChannelsList = document.querySelector(".channels-list");
         this.domChannelSelect = document.querySelector(".select-channel");
         this.domCurrentChannel = document.querySelector(".current-channel");
-        this.templateMaker = new TemplateMaker();
+        this.article = new Article();
     }
 
     insertArticle(article) {
-        this.domMain.innerHTML += this.templateMaker.getArticleTemplate(
-            article
-        );
+        this.domMain.innerHTML += this.article.getArticleTemplate(article);
     }
 
     insertArticles(articles) {

@@ -2,7 +2,7 @@ body,
 html {
     margin: 0;
     font-family: "Montserrat", sans-serif;
-    background: #f4f4f4;
+    background: url("../images/back.jpg");
 }
 
 a {
@@ -13,6 +13,12 @@ a {
     max-width: 1000px;
     margin: auto;
     padding: 0 13px;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .default-button {

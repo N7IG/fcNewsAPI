@@ -1,6 +1,7 @@
 header {
     background: rgb(44, 44, 44);
     color: #cccccc;
+    box-shadow: 0px 1px 20px 6px rgba(0, 0, 0, 0.51);
 }
 
 .title-block {
@@ -17,7 +18,7 @@ h1 {
     margin: 0px;
     margin-left: 6px;
     font-size: 36px;
-    color: #00ffe0;
+    color: #f1ffc8;
 }
 
 .channel-bar {

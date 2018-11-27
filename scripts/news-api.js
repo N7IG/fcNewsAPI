@@ -1,4 +1,7 @@
 import { appConfig } from "./config";
+
+console.log("news-api loaded");
+
 export class NewsApi {
     constructor() {
         this.API_KEY = appConfig.youtubeApiKey;

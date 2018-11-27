@@ -1,17 +1,19 @@
+import "../styles/general.css";
+import "../styles/header.css";
+
 import "@babel/polyfill";
 import "whatwg-fetch";
 import "promise-polyfill";
 
-import { NewsApi } from "./news-api";
 import { DOMWorker } from "./dom-worker";
 
-const newsapi = new NewsApi();
 const domWorker = new DOMWorker();
 
 const domChannelSelect = document.querySelector(".select-channel");
 const domChannelsList = document.querySelector(".channels-list");
+const domShowNews = document.querySelector(".show-news");
 
-function onChannelsClick(event) {
+async function onChannelsClick(event) {
     if (event.target.tagName === "LI") {
         const sourceName = event.target.getAttribute("data-name");
         const sourceId = event.target.getAttribute("data-id");
@@ -43,10 +45,15 @@ async function insertSources() {
     }
 }
 
+async function showNews() {
+    await import(/* webpackPreload: true */ "./news-api");
+    // const newsapi = new NewsApi();
+    // insertTopHeadlines();
+    // insertSources();
+}
+
+domShowNews.addEventListener("click", event => showNews(event));
+domChannelsList.addEventListener("click", event => onChannelsClick(event));
 domChannelSelect.addEventListener("click", event =>
     domWorker.toggleSourceBar(event)
 );
-domChannelsList.addEventListener("click", event => onChannelsClick(event));
-
-insertTopHeadlines();
-insertSources();
