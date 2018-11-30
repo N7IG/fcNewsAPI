@@ -23,7 +23,7 @@ async function onChannelsClick(event) {
     }
 }
 
-async function insertTopHeadlines(params) {
+async function insertTopHeadlines(newsapi, params) {
     try {
         const response = await newsapi.topHeadlines(params);
         domWorker.insertArticles(response.articles);
@@ -34,7 +34,7 @@ async function insertTopHeadlines(params) {
     }
 }
 
-async function insertSources() {
+async function insertSources(newsapi) {
     try {
         const response = await newsapi.sources();
         domWorker.displaySources(response);
@@ -46,10 +46,13 @@ async function insertSources() {
 }
 
 async function showNews() {
-    await import(/* webpackPreload: true */ "./news-api");
-    // const newsapi = new NewsApi();
-    // insertTopHeadlines();
-    // insertSources();
+    const {
+        NewsApi: NewsApi
+    } = await import(/* webpackChunkName: "news-api" */ "./news-api");
+    const newsapi = new NewsApi();
+
+    insertTopHeadlines(newsapi);
+    insertSources(newsapi);
 }
 
 domShowNews.addEventListener("click", event => showNews(event));

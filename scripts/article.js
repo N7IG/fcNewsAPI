@@ -1,7 +1,5 @@
 import "../styles/article.css";
 
-console.log("Artice loaded");
-
 export class Article {
     getArticleTemplate(article) {
         // TODO: try to use \s again

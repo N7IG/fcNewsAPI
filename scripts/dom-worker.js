@@ -1,7 +1,5 @@
 import { Article } from "./article";
 
-console.log("dom-worker loaded");
-
 export class DOMWorker {
     constructor() {
         this.domMain = document.querySelector("main");
