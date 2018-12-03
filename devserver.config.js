@@ -3,6 +3,10 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
     entry: "./scripts/main.js",
+    mode: "production",
+    devServer: {
+        port: 9000
+    },
     output: {
         path: path.resolve(__dirname, "dist"),
         filename: "main.js",

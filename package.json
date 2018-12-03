@@ -7,9 +7,9 @@
         "browserify": "browserify ./scripts/main.js -o bundle.js -t [ babelify ]",
         "build.babel": "babel scripts --out-file ./transpiled.js",
         "watch.babel": "babel babel-script --out-file ./transpiled.js",
-        "dev": "webpack --mode=development --watch=true",
-        "prod": "webpack --mode=production",
-        "start.dev": "webpack-dev-server --mode=production"
+        "dev": "webpack --config dev.config.js",
+        "prod": "webpack --config prod.config.js",
+        "start.dev": "webpack-dev-server --config devserver.config.js"
     },
     "repository": {
         "type": "git",
