@@ -42,6 +42,15 @@ async function insertSources(newsapi) {
         domWorker.showSourcesError(
             "Looks like you have problems with your internet connection. No channels to choose from :("
         );
+
+        const {
+            ErrorHandler: ErrorHandler
+        } = await import(/* webpackChunkName: "error-handler" */ "./error-handler");
+        console.log("uua");
+        console.log("eh", ErrorHandler);
+        const eh = new ErrorHandler();
+        console.log("uu");
+        errorHandler.alert("YEEEEEEEEEEEEEEEEEEEEE");
     }
 }
 
