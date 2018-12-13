@@ -28,9 +28,10 @@ async function insertTopHeadlines(newsapi, params) {
         const response = await newsapi.topHeadlines(params);
         domWorker.insertArticles(response.articles);
     } catch {
-        domWorker.showArticesError(
-            "Looks like you have problems with your internet connection. No news right now :("
-        );
+        const errorHandlerDefault = await import(/* webpackChunkName: "error-handler" */ "./error-handler");
+        const errorHandler = errorHandlerDefault.default;
+        in1 = errorHandler;
+        errorHandler.alert("Unable to load articles");
     }
 }
 
@@ -43,14 +44,10 @@ async function insertSources(newsapi) {
             "Looks like you have problems with your internet connection. No channels to choose from :("
         );
 
-        const {
-            ErrorHandler: ErrorHandler
-        } = await import(/* webpackChunkName: "error-handler" */ "./error-handler");
-        console.log("uua");
-        console.log("eh", ErrorHandler);
-        const eh = new ErrorHandler();
-        console.log("uu");
-        errorHandler.alert("YEEEEEEEEEEEEEEEEEEEEE");
+        const errorHandlerDefault = await import(/* webpackChunkName: "error-handler" */ "./error-handler");
+        const errorHandler = errorHandlerDefault.default;
+        in2 = errorHandler;
+        errorHandler.alert("Unable to load sources");
     }
 }
 
