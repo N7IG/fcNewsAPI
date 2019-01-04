@@ -30,7 +30,6 @@ async function insertTopHeadlines(newsapi, params) {
     } catch {
         const errorHandlerDefault = await import(/* webpackChunkName: "error-handler" */ "./error-handler");
         const errorHandler = errorHandlerDefault.default;
-        in1 = errorHandler;
         errorHandler.alert("Unable to load articles");
     }
 }
@@ -46,7 +45,6 @@ async function insertSources(newsapi) {
 
         const errorHandlerDefault = await import(/* webpackChunkName: "error-handler" */ "./error-handler");
         const errorHandler = errorHandlerDefault.default;
-        in2 = errorHandler;
         errorHandler.alert("Unable to load sources");
     }
 }

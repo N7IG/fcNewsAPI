@@ -2,7 +2,6 @@ import "../styles/article.css";
 
 export class Article {
     getArticleTemplate(article) {
-        // TODO: try to use \s again
         const charsLeftExp = /\[\+[0-9]+ chars\]/;
 
         const title = article.title || "";

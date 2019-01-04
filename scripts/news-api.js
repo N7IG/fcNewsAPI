@@ -1,9 +1,10 @@
-import { appConfig } from "./config";
+import { RequestFactory } from "./request-factory";
+import { GET } from "./cosntants";
 
 export class NewsApi {
     constructor() {
-        this.API_KEY = appConfig.youtubeApiKey;
-        this.baseUrl = appConfig.baseUrl;
+        this.requestFactory = new RequestFactory();
+        this.getRequest = this.requestFactory.create(GET);
     }
 
     /*
@@ -13,7 +14,7 @@ export class NewsApi {
      * country, category, sources, q, pageSize, page
      */
     topHeadlines(queryParams = { country: "us", pageSize: 10 }) {
-        return this.makeRequest("top-headlines", queryParams);
+        return this.getRequest.makeRequest("top-headlines", queryParams);
     }
 
     /*
@@ -22,22 +23,6 @@ export class NewsApi {
      * category, language, country
      */
     sources(queryParams) {
-        return this.makeRequest("sources", queryParams);
-    }
-
-    async makeRequest(endpoint, queryParams) {
-        let queryString = "";
-        if (queryParams) {
-            queryString = Object.entries(queryParams)
-                .map(pair => pair.join("="))
-                .join("&");
-        }
-
-        const response = await fetch(
-            `${this.baseUrl + endpoint}?${queryString}&apiKey=${this.API_KEY}`
-        );
-        const json = await response.json();
-
-        return json;
+        return this.getRequest.makeRequest("sources", queryParams);
     }
 }
