@@ -1,10 +1,8 @@
-import { RequestFactory } from "./request-factory";
-import { GET } from "./cosntants";
+import { RequestFactoryProxy } from "./request-factory-proxy";
 
 export class NewsApi {
     constructor() {
-        this.requestFactory = new RequestFactory();
-        this.getRequest = this.requestFactory.create(GET);
+        this.requestFactoryProxy = new RequestFactoryProxy();
     }
 
     /*
@@ -14,7 +12,10 @@ export class NewsApi {
      * country, category, sources, q, pageSize, page
      */
     topHeadlines(queryParams = { country: "us", pageSize: 10 }) {
-        return this.getRequest.makeRequest("top-headlines", queryParams);
+        return this.requestFactoryProxy.callGetRequest(
+            "top-headlines",
+            queryParams
+        );
     }
 
     /*
@@ -23,6 +24,6 @@ export class NewsApi {
      * category, language, country
      */
     sources(queryParams) {
-        return this.getRequest.makeRequest("sources", queryParams);
+        return this.requestFactoryProxy.callGetRequest("sources", queryParams);
     }
 }
